@@ -1,10 +1,9 @@
 import React from 'react';
-import { gql, useMutation, useReactiveVar, Reference } from '@apollo/client';
+import { gql, useMutation, useReactiveVar } from '@apollo/client';
 
 import { GET_LAUNCH_DETAILS } from '../pages/launch';
 import Button from '../components/button';
 import { cartItemsVar } from '../cache';
-import * as LaunchDetailTypes from '../pages/__generated__/LaunchDetails';
 
 export { GET_LAUNCH_DETAILS };
 
@@ -21,10 +20,7 @@ export const CANCEL_TRIP = gql`
 	}
 `;
 
-interface ActionButtonProps
-	extends Partial<LaunchDetailTypes.LaunchDetails_launch> {}
-
-const CancelTripButton: React.FC<ActionButtonProps> = ({ id }) => {
+const CancelTripButton = ({ id }) => {
 	const [mutate, { loading, error }] = useMutation(CANCEL_TRIP, {
 		variables: { launchId: id },
 		update(cache, { data: { cancelTrip } }) {
@@ -36,8 +32,9 @@ const CancelTripButton: React.FC<ActionButtonProps> = ({ id }) => {
 					__typename: 'User',
 					id: localStorage.getItem('userId'),
 				}),
+
 				fields: {
-					trips(existingTrips: Reference[], { readField }) {
+					trips(existingTrips, { readField }) {
 						return existingTrips.filter(
 							(tripRef) => readField('id', tripRef) !== launch.id
 						);
@@ -59,7 +56,7 @@ const CancelTripButton: React.FC<ActionButtonProps> = ({ id }) => {
 	);
 };
 
-const ToggleTripButton: React.FC<ActionButtonProps> = ({ id }) => {
+const ToggleTripButton = ({ id }) => {
 	const cartItems = useReactiveVar(cartItemsVar);
 	const isInCart = id ? cartItems.includes(id) : false;
 	return (
@@ -81,7 +78,7 @@ const ToggleTripButton: React.FC<ActionButtonProps> = ({ id }) => {
 	);
 };
 
-const ActionButton: React.FC<ActionButtonProps> = ({ isBooked, id }) =>
+const ActionButton = ({ isBooked, id }) =>
 	isBooked ? <CancelTripButton id={id} /> : <ToggleTripButton id={id} />;
 
 export default ActionButton;

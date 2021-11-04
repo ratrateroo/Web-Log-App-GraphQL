@@ -3,8 +3,6 @@ import { gql, useQuery } from '@apollo/client';
 
 import { Header, Loading } from '../components';
 import { CartItem, BookTrips } from '../containers';
-import { RouteComponentProps } from '@reach/router';
-import { GetCartItems } from './__generated__/GetCartItems';
 
 export const GET_CART_ITEMS = gql`
 	query GetCartItems {
@@ -12,10 +10,8 @@ export const GET_CART_ITEMS = gql`
 	}
 `;
 
-interface CartProps extends RouteComponentProps {}
-
-const Cart: React.FC<CartProps> = () => {
-	const { data, loading, error } = useQuery<GetCartItems>(GET_CART_ITEMS);
+const Cart = () => {
+	const { data, loading, error } = useQuery(GET_CART_ITEMS);
 
 	if (loading) return <Loading />;
 	if (error) return <p>ERROR: {error.message}</p>;
@@ -27,9 +23,10 @@ const Cart: React.FC<CartProps> = () => {
 				<p data-testid="empty-message">No items in your cart</p>
 			) : (
 				<Fragment>
-					{data?.cartItems.map((launchId: any) => (
+					{data?.cartItems.map((launchId) => (
 						<CartItem key={launchId} launchId={launchId} />
 					))}
+
 					<BookTrips cartItems={data?.cartItems || []} />
 				</Fragment>
 			)}
