@@ -34,7 +34,38 @@ export const GET_LAUNCHES = gql`
 `;
 
 const Launches = () => {
-	return <div />;
+	const { data, loading, error, fetchMore } = useQuery(GET_LAUNCHES);
+
+	const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+	if (loading) return <Loading />;
+	if (error) return <p>ERROR</p>;
+	if (!data) return <p>Not found</p>;
+
+	return (
+		<Fragment>
+			<Header />
+			{data.launches &&
+				data.launches.hasMore &&
+				(isLoadingMore ? (
+					<Loading />
+				) : (
+					<Button
+						onClick={async () => {
+							setIsLoadingMore(true);
+							await fetchMore({
+								variables: {
+									after: data.launches.cursor,
+								},
+							});
+
+							setIsLoadingMore(false);
+						}}>
+						Load More
+					</Button>
+				))}
+		</Fragment>
+	);
 };
 
 export default Launches;
