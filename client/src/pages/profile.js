@@ -3,8 +3,6 @@ import { gql, useQuery } from '@apollo/client';
 
 import { Loading, Header, LaunchTile } from '../components';
 import { LAUNCH_TILE_DATA } from './launches';
-import { RouteComponentProps } from '@reach/router';
-import * as GetMyTripsTypes from './__generated__/GetMyTrips';
 
 export const GET_MY_TRIPS = gql`
 	query GetMyTrips {
@@ -19,10 +17,8 @@ export const GET_MY_TRIPS = gql`
 	${LAUNCH_TILE_DATA}
 `;
 
-interface ProfileProps extends RouteComponentProps {}
-
-const Profile: React.FC<ProfileProps> = () => {
-	const { data, loading, error } = useQuery<GetMyTripsTypes.GetMyTrips>(
+const Profile = () => {
+	const { data, loading, error } = useQuery(
 		GET_MY_TRIPS,
 
 		{ fetchPolicy: 'network-only' }
@@ -35,7 +31,7 @@ const Profile: React.FC<ProfileProps> = () => {
 		<Fragment>
 			<Header>My Trips</Header>
 			{data.me && data.me.trips.length ? (
-				data.me.trips.map((launch: any) => (
+				data.me.trips.map((launch) => (
 					<LaunchTile key={launch.id} launch={launch} />
 				))
 			) : (
