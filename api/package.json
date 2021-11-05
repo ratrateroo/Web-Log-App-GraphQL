@@ -1,0 +1,19 @@
+{
+  "name": "web-log-graphql-api",
+  "version": "1.0.0",
+  "description": "A graphql api using mongodb as a storage.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MLCT",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.4.1",
+    "graphql-upload": "^12.0.0",
+    "shortid": "^2.2.16"
+  }
+}
