@@ -60,7 +60,7 @@ const typeDefs = gql`
 	type User {
 		id: ID!
 		email: String!
-		profileImage: String
+		#profileImage: String
 		trips: [Launch]!
 		token: String
 	}

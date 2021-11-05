@@ -107,7 +107,7 @@ module.exports.createStore = () => {
 		createdAt: Sequelize.DATE,
 		updatedAt: Sequelize.DATE,
 		email: Sequelize.STRING,
-		profileImage: Sequelize.STRING,
+		// profileImage: Sequelize.STRING,
 		token: Sequelize.STRING,
 	});
 

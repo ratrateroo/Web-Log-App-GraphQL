@@ -20,11 +20,12 @@ const dataSources = () => ({
 });
 
 //
-const context =  async ({ req }) => {
+const context = async ({ req }) => {
 		// simple auth check on every request
 		const auth = (req.headers && req.headers.authorization) || '';
 		const email = Buffer.from(auth, 'base64').toString('ascii');
 
+		//
 		if (!isEmail.validate(email)) return { user: null };
 		// find a user by their email
 		const users = await store.users.findOrCreate({ where: { email } });
@@ -32,21 +33,52 @@ const context =  async ({ req }) => {
 
 		return { user: { ...user.dataValues } };
 	},
+	// const server = new ApolloServer({
+	// 	typeDefs,
+	// 	resolvers,
+	// 	dataSources,
+	// 	context,
+	// 	introspection: true,
+	//   	// apollo: {
+	//     // 	key: APOLLO_KEY,
+	//   	// }
+	// });
 
-const server = new ApolloServer({
-	typeDefs,
-	resolvers,
+	// server.listen().then(() => {
+	// 	console.log(`
+	//     Server is running!
+	//     Listening on port 4000
+	//   `);
+	// });
+	// Set up Apollo Server
+	server = new ApolloServer({
+		typeDefs,
+		resolvers,
+		dataSources,
+		context,
+	});
+
+// Start our server if we're not in a test env.
+// if we're in a test env, we'll manually start it in a test
+if (process.env.NODE_ENV !== 'test') {
+	server.listen().then(() => {
+		console.log(`
+      Server is running!
+      Listening on port 4000
+      Explore at https://studio.apollographql.com/sandbox
+    `);
+	});
+}
+
+// export all the important pieces for integration/e2e tests to use
+module.exports = {
 	dataSources,
 	context,
-	introspection: true,
-  	apollo: {
-    	key: process.env.APOLLO_KEY,
-  	}
-});
-
-server.listen().then(() => {
-	console.log(`
-    Server is running!
-    Listening on port 4000
-  `);
-});
+	typeDefs,
+	resolvers,
+	ApolloServer,
+	LaunchAPI,
+	UserAPI,
+	store,
+	server,
+};
