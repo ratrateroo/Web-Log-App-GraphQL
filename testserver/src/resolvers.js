@@ -6,11 +6,13 @@ module.exports = {
 			const allLaunches = await dataSources.launchAPI.getAllLaunches();
 			// we want these in reverse chronological order
 			allLaunches.reverse();
+
 			const launches = paginateResults({
 				after,
 				pageSize,
 				results: allLaunches,
 			});
+
 			return {
 				launches,
 				cursor: launches.length
@@ -26,18 +28,10 @@ module.exports = {
 		},
 		launch: (_, { id }, { dataSources }) =>
 			dataSources.launchAPI.getLaunchById({ launchId: id }),
-		me: (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser(),
+		me: async (_, __, { dataSources }) =>
+			dataSources.userAPI.findOrCreateUser(),
 	},
-
 	Mutation: {
-		login: async (_, { email }, { dataSources }) => {
-			const user = await dataSources.userAPI.findOrCreateUser({ email });
-			if (user) {
-				user.token = Buffer.from(email).toString('base64');
-				return user;
-			}
-		},
-
 		bookTrips: async (_, { launchIds }, { dataSources }) => {
 			const results = await dataSources.userAPI.bookTrips({ launchIds });
 			const launches = await dataSources.launchAPI.getLaunchesByIds({
@@ -55,7 +49,6 @@ module.exports = {
 				launches,
 			};
 		},
-
 		cancelTrip: async (_, { launchId }, { dataSources }) => {
 			const result = await dataSources.userAPI.cancelTrip({ launchId });
 
@@ -72,8 +65,18 @@ module.exports = {
 				launches: [launch],
 			};
 		},
+		login: async (_, { email }, { dataSources }) => {
+			const user = await dataSources.userAPI.findOrCreateUser({ email });
+			if (user) {
+				user.token = Buffer.from(email).toString('base64');
+				return user;
+			}
+		},
 	},
-
+	Launch: {
+		isBooked: async (launch, _, { dataSources }) =>
+			dataSources.userAPI.isBookedOnLaunch({ launchId: launch.id }),
+	},
 	Mission: {
 		// The default size is 'LARGE' if not provided
 		missionPatch: (mission, { size } = { size: 'LARGE' }) => {
@@ -82,15 +85,13 @@ module.exports = {
 				: mission.missionPatchLarge;
 		},
 	},
-	Launch: {
-		isBooked: async (launch, _, { dataSources }) =>
-			dataSources.userAPI.isBookedOnLaunch({ launchId: launch.id }),
-	},
 	User: {
 		trips: async (_, __, { dataSources }) => {
 			// get ids of launches by user
 			const launchIds = await dataSources.userAPI.getLaunchIdsByUser();
+
 			if (!launchIds.length) return [];
+
 			// look up those launches by their ids
 			return (
 				dataSources.launchAPI.getLaunchesByIds({

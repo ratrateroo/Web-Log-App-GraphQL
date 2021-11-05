@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-	# Your schema will go here
 	type Query {
 		launches( # replace the current launches query with this one.
 			"""
@@ -17,12 +16,28 @@ const typeDefs = gql`
 		me: User
 	}
 
+	type Mutation {
+		#
+		bookTrips(launchIds: [ID]!): TripUpdateResponse!
+
+		#
+		cancelTrip(launchId: ID!): TripUpdateResponse!
+
+		login(email: String): User
+	}
+
+	type TripUpdateResponse {
+		success: Boolean!
+		message: String
+		launches: [Launch]
+	}
+
 	"""
 	Simple wrapper around our list of launches that contains a cursor to the
 	last item in the list. Pass this cursor to the launches query to fetch results
 	after these.
 	"""
-	type LaunchConnection { # add this below the Query type as an additional type.
+	type LaunchConnection {
 		cursor: String!
 		hasMore: Boolean!
 		launches: [Launch]!
@@ -45,6 +60,7 @@ const typeDefs = gql`
 	type User {
 		id: ID!
 		email: String!
+		profileImage: String
 		trips: [Launch]!
 		token: String
 	}
@@ -57,17 +73,6 @@ const typeDefs = gql`
 	enum PatchSize {
 		SMALL
 		LARGE
-	}
-
-	type Mutation {
-		bookTrips(launchIds: [ID]!): TripUpdateResponse!
-		cancelTrip(launchId: ID!): TripUpdateResponse!
-		login(email: String): User
-	}
-	type TripUpdateResponse {
-		success: Boolean!
-		message: String
-		launches: [Launch]
 	}
 `;
 
