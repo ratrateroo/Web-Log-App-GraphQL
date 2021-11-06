@@ -1,0 +1,69 @@
+.c-modal {
+	z-index: 100;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+	padding: 1rem;
+	margin-top: 3rem;
+}
+
+.c-modal__header {
+	width: 100%;
+	padding: 1rem 0.5rem;
+	background: var(--Cadet-Blue);
+	color: white;
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.c-modal__body {
+	background-color: white;
+	border-radius: 0 0 8px 8px;
+	width: 100%;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.c-modal__title {
+	margin: 0.5rem;
+}
+
+.c-modal__content {
+	padding: 1rem 0.5rem;
+}
+.c-modal__footer {
+	padding: 0.5rem 0.5rem;
+	display: flex;
+}
+
+.c-user-updateprofile {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.c-user-updateprofile__image {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	/* background-image: url('../Images/ChloeAvatar.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center; */
+	overflow: hidden;
+}
+
+.c-user-updateprofile__image-pic {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
