@@ -1,0 +1,21 @@
+.c-form {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+.c-form__body {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: 30%;
+}
+
+.c-form-button {
+	margin: 1rem;
+	width: 100%;
+}

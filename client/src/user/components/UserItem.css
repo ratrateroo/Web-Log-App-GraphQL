@@ -1,0 +1,46 @@
+.o-user-list__item {
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.c-user {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	background-color: var(--Deep-Space-Sparcle);
+	height: 6rem;
+}
+
+.c-user__avatar {
+	margin: 0.5rem;
+	height: 5rem;
+	width: 5rem;
+	border-radius: 50%;
+
+	overflow: hidden;
+}
+
+.c-user__avatar-pic {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.c-user__info {
+	margin: 0.5rem;
+	padding: 0.5rem;
+	height: 5rem;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.c-user__fullname {
+	line-height: 2rem;
+	text-align: center;
+	color: var(--Straw);
+}

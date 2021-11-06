@@ -1,0 +1,50 @@
+.c-user-profile {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.c-user-profile__image {
+	height: 300px;
+	width: 300px;
+	border-radius: 50%;
+	/* background-image: url('../Images/ChloeAvatar.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center; */
+	overflow: hidden;
+}
+
+.c-user-profile__image-pic {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* .c-user-profile__info {
+	margin-top: 30px;
+} */
+
+.c-user-profile__info__fullname {
+	margin-bottom: 20px;
+	height: 30px;
+	line-height: 30px;
+	color: var(--English-Green);
+	text-align: center;
+}
+
+.c-user-profile__info__detail-list {
+	margin-top: 50px;
+	display: flex;
+	width: 336px;
+	height: 60px;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--Dark-Smoke);
+}
