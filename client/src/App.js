@@ -1,12 +1,7 @@
 import React, { useState, useCallback } from 'react';
 
 import './App.css';
-import {
-	BrowserRouter as Router,
-	Route,
-	Redirect,
-	Switch,
-} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
@@ -40,19 +35,21 @@ const App = () => {
 	}, []);
 
 	let routes = (
-		<Switch>
+		<Routes>
 			{/* <Route path="/" exact>
 				<Blogs title="Blogs" />
 			</Route> */}
 			{/* {token && <Redirect from="/signup" to="/" exact />} */}
-			{token && <Redirect from="/login" to="/users" exact />}
-			{!token && <Redirect from="/users" to="/login" exact />}
 			{/* {token && <Redirect to="/" />} */}
-			{token && (
+			{/* {!token && (
 				<Route path="/users" exact>
 					<Users title="Users" />
 				</Route>
-			)}
+			)} */}
+			{/* <Route>
+				{!token && <Redirect from="/users" to="/login" exact />}
+				{token && <Redirect from="/login" to="/users" exact />}
+			</Route> */}
 
 			{/* <Route path="/blogs/:uid" exact>
 				<UserBlogs title="User Blogs" />
@@ -67,20 +64,20 @@ const App = () => {
 				<Blog title="<Username>'s Blog" />
 			</Route> */}
 			{isLoggedIn && (
-				<Route path="/profile/:uid" exact>
-					<UserProfile title="User Profile" />
-				</Route>
+				<Route
+					path="/profile/:uid"
+					element={<UserProfile title="User Profile" />}></Route>
 			)}
-			<Route path="/login" exact>
-				<UserLogin title="User Login" />
-			</Route>
+			<Route
+				path="/login"
+				element={<UserLogin title="User Login" />}></Route>
 			{!isLoggedIn && (
-				<Route path="/signup" exact>
-					<UserSignupForm title="User Signup" />
-				</Route>
+				<Route
+					path="/signup"
+					element={<UserSignupForm title="User Signup" />}></Route>
 			)}
-			{!token && <Redirect from="/" to="/login" exact />}
-		</Switch>
+			{/* {!token && <Redirect from="/" to="/login" exact />} */}
+		</Routes>
 	);
 
 	return (
@@ -92,10 +89,8 @@ const App = () => {
 				login: login,
 				logout: logout,
 			}}>
-			<Router>
-				<MainNavigation />
-				{routes}
-			</Router>
+			<MainNavigation />
+			{routes}
 		</AuthContext.Provider>
 	);
 };
