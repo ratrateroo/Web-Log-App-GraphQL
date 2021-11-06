@@ -1,0 +1,7 @@
+.c-navigation {
+	background-color: var(--English-Green);
+	width: 80%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+}

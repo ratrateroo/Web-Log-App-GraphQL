@@ -1,0 +1,8 @@
+.o-header {
+	background-color: var(--English-Green);
+	height: 2rem;
+	grid-area: header;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
