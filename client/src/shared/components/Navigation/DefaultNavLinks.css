@@ -1,0 +1,30 @@
+.c-default-navigation__item {
+	margin-right: 1rem;
+}
+
+.c-default-navigation__items {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	margin: 0;
+}
+
+.c-default-navigation__link {
+	color: white;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	padding: 1rem;
+}
+
+.c-default-navigation__link:active {
+	color: black;
+
+	background-color: white;
+}
+
+.c-default-navigation__link:focus {
+	border: none;
+	outline: none;
+}
