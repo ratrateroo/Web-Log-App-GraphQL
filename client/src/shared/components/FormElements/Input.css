@@ -1,0 +1,57 @@
+.c-form-input__label {
+	color: var(--Cadet-Blue);
+	width: 100%;
+}
+
+.c-form-input {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.c-form-textarea {
+	width: 100%;
+	resize: none;
+	height: 100%;
+}
+
+.c-form-input__data {
+	height: 1.3rem;
+	width: 100%;
+	font-size: 0.8rem;
+}
+
+.c-form-input__data:focus {
+	outline: 3px solid var(--Honeydew);
+}
+
+.c-form-input__data--invalid {
+	outline: 1px solid var(--Red-Wine);
+	height: 1.3rem;
+	width: 100%;
+	font-size: 0.8rem;
+	border: none;
+}
+
+.c-form-input__textarea {
+	height: 100%;
+	width: 100%;
+	font-size: 0.8rem;
+}
+
+.c-form-input__textarea--invalid {
+	outline: 1px solid var(--Red-Wine);
+	height: 100%;
+	width: 100%;
+	font-size: 0.8rem;
+	border: none;
+}
+
+.c-form-input__error {
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	color: var(--Red-Wine);
+}
