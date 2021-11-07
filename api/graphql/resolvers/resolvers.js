@@ -1,6 +1,14 @@
+const userResolvers = require('./user');
+
 const resolvers = {
-	Query: {},
-	Mutations: {},
+	Query: {
+		user: userResolvers.user,
+		users: userResolvers.users,
+		login: userResolvers.login,
+	},
+	Mutations: {
+		createUser: userResolvers.createUser,
+	},
 };
 
 module.exports = resolvers;
