@@ -6,7 +6,7 @@ const resolvers = {
 		users: userResolvers.users,
 		login: userResolvers.login,
 	},
-	Mutations: {
+	Mutation: {
 		createUser: userResolvers.createUser,
 	},
 };

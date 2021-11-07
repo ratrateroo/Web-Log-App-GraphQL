@@ -53,7 +53,7 @@ const typeDefs = gql`
 		content: String!
 	}
 
-	type RootQuery {
+	type Query {
 		user(id: ID!): User!
 		users: [User!]!
 		blogs: [Blog!]!
@@ -61,7 +61,7 @@ const typeDefs = gql`
 		login(username: String!, password: String!): AuthData!
 	}
 
-	type RootMutation {
+	type Mutation {
 		createUser(userInput: UserInput): AuthData!
 		createBlog(blogInput: BlogInput): Blog
 		addFriend(friendId: ID!): Friend!
