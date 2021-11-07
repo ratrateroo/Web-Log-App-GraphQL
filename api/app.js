@@ -7,11 +7,24 @@ const createDirectory = require('./util/createDirectory');
 const fileNameReader = require('./util/fileNameReader');
 const isAuth = require('./middleware/is-auth');
 
+const url = `mongodb://127.0.0.1:27017/${process.env.MONGO_DB}`;
+
 //Server Definitions
 
 const startServer = async () => {
 	try {
 		console.log('This is the server.');
+
+		//connect to the database
+
+		await mongoose
+			.connect(url, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+			})
+			.then(() => {
+				console.log('Connected 🚀 To MongoDB Successfully');
+			});
 
 		//Start Apollo Server
 		await apolloserver.start();
@@ -25,10 +38,10 @@ const startServer = async () => {
 		await createDirectory('images');
 		//serve public folder for path starting with /freefiles
 		app.use('/freefiles', express.static('public'));
-
-		app.listen({ port: 4000 }, () => {
+		const port = 8000;
+		app.listen({ port: port }, () => {
 			console.log(
-				`🚀  Server ready at http://localhost:4000/${apolloserver.graphqlPath}`
+				`🚀  Server ready at http://localhost:${port}/${apolloserver.graphqlPath}`
 			);
 		});
 

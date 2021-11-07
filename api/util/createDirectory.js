@@ -6,7 +6,7 @@ const createDirectory = (foldername) => {
 		mkdirSync(path.join(__dirname, `../public/${foldername}`));
 
 	// Getting information for a directory
-
+	/*
 	stat(path.join(__dirname, `../public/${foldername}`), (error, stats) => {
 		if (error) {
 			console.log(error);
@@ -23,5 +23,6 @@ const createDirectory = (foldername) => {
 			console.log('Path is directory:', stats.isDirectory());
 		}
 	});
+	*/
 };
 module.exports = createDirectory;

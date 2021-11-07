@@ -69,10 +69,10 @@ const typeDefs = gql`
 		updateImage(userId: ID!, profileimage: String!): User
 	}
 
-	# schema {
-	#     query: RootQuery
-	#     mutation: RootMutation
-	# }
+	schema {
+		query: Query
+		mutation: Mutation
+	}
 `;
 
 module.exports = typeDefs;
