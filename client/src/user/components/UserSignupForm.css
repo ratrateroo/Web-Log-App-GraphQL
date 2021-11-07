@@ -14,7 +14,7 @@
 	height: 100%;
 	width: 30%;
 }
-.c-form-input {
+/* .c-form-input {
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
@@ -29,7 +29,7 @@
 .c-form-input__data {
 	height: 1.3rem;
 	width: 100%;
-}
+} */
 
 .c-form-button {
 	margin: 1rem;
