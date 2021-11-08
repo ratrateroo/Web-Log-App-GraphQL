@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 
 import App from './App';
+import Users from './user/pages/Users';
 import UserLogin from './user/pages/UserLogin';
 import UserSignUp from './user/pages/UserSignup';
 import reportWebVitals from './reportWebVitals';
@@ -15,6 +16,7 @@ ReactDOM.render(
 			<MainNavigation />
 			<Routes>
 				<Route path="/" element={<App />}>
+					<Route path="users" element={<Users />} />
 					<Route path="login" element={<UserLogin />} />
 					<Route path="signup" element={<UserSignUp />} />
 					<Route path="*" element={<UserLogin />} />
