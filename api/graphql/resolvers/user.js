@@ -29,6 +29,7 @@ const userResolvers = {
 	},
 
 	createUser: async (args) => {
+		console.log(args);
 		try {
 			const existingUser = await User.findOne({
 				email: args.userInput.email,
@@ -49,6 +50,7 @@ const userResolvers = {
 				profileimage: 'defaultimage',
 			});
 			const result = await user.save();
+
 			//return { ...result._doc, password: null, _id: result.id };
 
 			const token = jwt.sign(
@@ -60,7 +62,7 @@ const userResolvers = {
 			);
 
 			return {
-				userId: result.id,
+				userId: result._id,
 				token: token,
 				tokenExpiration: 1,
 			};
@@ -88,6 +90,7 @@ const userResolvers = {
 	},
 
 	login: async ({ username, password }) => {
+		console.log(username, password);
 		const user = await User.findOne({ username: username });
 		if (!user) {
 			throw new Error('User does not exist!');

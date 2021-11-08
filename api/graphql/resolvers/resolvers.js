@@ -4,10 +4,14 @@ const resolvers = {
 	Query: {
 		user: userResolvers.user,
 		users: userResolvers.users,
-		login: userResolvers.login,
+		login: (_, data) => {
+			return userResolvers.login(data);
+		},
 	},
 	Mutation: {
-		createUser: userResolvers.createUser,
+		createUser: (_, data) => {
+			return userResolvers.createUser(data);
+		},
 	},
 };
 

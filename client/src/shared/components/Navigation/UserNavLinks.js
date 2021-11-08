@@ -15,16 +15,14 @@ const NavLinks = (props) => {
 								<li className="c-user-navigation__item">
 									<NavLink
 										to="/signup"
-										className="c-user-navigation__link"
-										exact>
+										className="c-user-navigation__link">
 										Signup
 									</NavLink>
 								</li>
 								<li className="c-user-navigation__item">
 									<NavLink
 										to="/login"
-										className="c-user-navigation__link"
-										exact>
+										className="c-user-navigation__link">
 										Login
 									</NavLink>
 								</li>

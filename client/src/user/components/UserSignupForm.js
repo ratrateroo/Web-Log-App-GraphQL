@@ -46,59 +46,61 @@ const UserSignupForm = (props) => {
 	const signupSubmitHandler = async (event) => {
 		event.preventDefault();
 
-		const requestBody = {
-			query: `
-			mutation {
-				createUser(userInput: {
-					username: "${formState.inputs.username.value}",
-					email: "${formState.inputs.email.value}",
-					password: "${formState.inputs.password.value}",
-					firstname: "${formState.inputs.firstname.value}",
-					middlename: "${formState.inputs.middlename.value}",
-					lastname: "${formState.inputs.lastname.value}",
-
-				}) {
-					userId
-					token
-					tokenExpiration
-				}
-			}
-			`,
-		};
-
-		//OTHER WAY TO CREATE REQUEST BODY
 		// const requestBody = {
 		// 	query: `
-		//   mutation CreateUser(
-		// 	  $username: String!,
-		// 	  $email: String!,
-		// 	  $password: String!
-		// 	  $firstname: String!,
-		// 	  $middlename: String!,
-		// 	  $lastname: String!,
-		// 	  ) {
-		//     createUser(userInput: {
-		// 		username: $username,
-		// 		email: $email,
-		// 		password: $password,
-		// 		firstname: $firstname,
-		// 		middlename: $middlename,
-		// 		lastname: $lastname
+		// 	mutation {
+		// 		createUser(userInput: {
+		// 			username: "${formState.inputs.username.value}",
+		// 			email: "${formState.inputs.email.value}",
+		// 			password: "${formState.inputs.password.value}",
+		// 			firstname: "${formState.inputs.firstname.value}",
+		// 			middlename: "${formState.inputs.middlename.value}",
+		// 			lastname: "${formState.inputs.lastname.value}",
+
 		// 		}) {
-		//       _id
-		//       username
-		//     }
-		//   }
-		// `,
-		// 	variables: {
-		// 		username: formState.inputs.username.value,
-		// 		email: formState.inputs.email.value,
-		// 		password: formState.inputs.password.value,
-		// 		firstname: formState.inputs.firstname.value,
-		// 		middlename: formState.inputs.middlename.value,
-		// 		lastname: formState.inputs.lastname.value,
-		// 	},
+		// 			userId
+		// 			token
+		// 			tokenExpiration
+		// 		}
+		// 	}
+		// 	`,
 		// };
+
+		//OTHER WAY TO CREATE REQUEST BODY
+		const requestBody = {
+			query: `
+		  mutation createUser(
+			  $username: String!,
+			  $email: String!,
+			  $password: String!
+			  $firstname: String!,
+			  $middlename: String!,
+			  $lastname: String!,
+			  ) {
+		    createUser(userInput: {
+				username: $username,
+				email: $email,
+				password: $password,
+				firstname: $firstname,
+				middlename: $middlename,
+				lastname: $lastname
+				}) {
+		      userId
+			  token
+			  tokenExpiration
+		      
+		    }
+		  }
+		`,
+			variables: {
+				username: formState.inputs.username.value,
+				email: formState.inputs.email.value,
+				password: formState.inputs.password.value,
+				firstname: formState.inputs.firstname.value,
+				middlename: formState.inputs.middlename.value,
+				lastname: formState.inputs.lastname.value,
+			},
+		};
 
 		fetch('http://localhost:8000/graphql', {
 			method: 'POST',
@@ -108,6 +110,7 @@ const UserSignupForm = (props) => {
 			body: JSON.stringify(requestBody),
 		})
 			.then((res) => {
+				console.log(res);
 				if (res.status !== 200 && res.status !== 201) {
 					throw new Error('Failed!');
 				}
