@@ -4,16 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 
 import App from './App';
-import Users from './user/pages/Users';
-import UserLogin from './user/pages/UserLogin';
-import UserSignUp from './user/pages/UserSignup';
+
 import reportWebVitals from './reportWebVitals';
-import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Router>
-			<MainNavigation />
+		{/* <Router>
 			<Routes>
 				<Route path="/" element={<App />}>
 					<Route path="users" element={<Users />} />
@@ -22,6 +18,9 @@ ReactDOM.render(
 					<Route path="*" element={<UserLogin />} />
 				</Route>
 			</Routes>
+		</Router> */}
+		<Router>
+			<App />
 		</Router>
 	</React.StrictMode>,
 	document.getElementById('root')

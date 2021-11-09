@@ -1,21 +1,17 @@
 import React, { useState, useCallback } from 'react';
-
 import './App.css';
-import { Route, Router, Outlet } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Outlet,
+} from 'react-router-dom';
 
-//import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
-
-//import UserLogin from './user/pages/UserLogin';
-//import UserSignupForm from './user/components/UserSignupForm';
-import UserProfile from './user/pages/UserProfile';
-//import UserBlogs from './user/pages/UserBlogs';
+import Layout from './shared/components/Layout/Layout';
 import Users from './user/pages/Users';
-
-// import Blog from './blogs/pages/Blog';
-// import Blogs from './blogs/pages/Blogs';
-// import CreateBlog from './blogs/pages/CreateBlog';
-// import UpdateBlog from './blogs/pages/UpdateBlog';
+import UserLogin from './user/pages/UserLogin';
+import UserSignup from './user/pages/UserSignup';
 
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,52 +30,6 @@ const App = () => {
 		setUserId(null);
 	}, []);
 
-	// let routes = (
-	// 	<Routes>
-	// 		{/* <Route path="/" exact>
-	// 			<Blogs title="Blogs" />
-	// 		</Route> */}
-	// 		{/* {token && <Redirect from="/signup" to="/" exact />} */}
-	// 		{/* {token && <Redirect to="/" />} */}
-	// 		{/* {!token && (
-	// 			<Route path="/users" exact>
-	// 				<Users title="Users" />
-	// 			</Route>
-	// 		)} */}
-	// 		{/* <Route>
-	// 			{!token && <Redirect from="/users" to="/login" exact />}
-	// 			{token && <Redirect from="/login" to="/users" exact />}
-	// 		</Route> */}
-
-	// 		{/* <Route path="/blogs/:uid" exact>
-	// 			<UserBlogs title="User Blogs" />
-	// 		</Route> */}
-	// 		{/* <Route path="/blog/new" exact>
-	// 			<CreateBlog title="Create Blog" />
-	// 		</Route> */}
-	// 		{/* <Route path="/blog/update/:bid" exact>
-	// 			<UpdateBlog title="Update Blog" />
-	// 		</Route> */}
-	// 		{/* <Route path="/blog/:bid" exact>
-	// 			<Blog title="<Username>'s Blog" />
-	// 		</Route> */}
-	// 		{isLoggedIn && (
-	// 			<Route
-	// 				path="/profile/:uid"
-	// 				element={<UserProfile title="User Profile" />}></Route>
-	// 		)}
-	// 		<Route
-	// 			path="/login"
-	// 			element={<UserLogin title="User Login" />}></Route>
-	// 		{!isLoggedIn && (
-	// 			<Route
-	// 				path="/signup"
-	// 				element={<UserSignupForm title="User Signup" />}></Route>
-	// 		)}
-	// 		{/* {!token && <Redirect from="/" to="/login" exact />} */}
-	// 	</Routes>
-	// );
-
 	return (
 		<AuthContext.Provider
 			value={{
@@ -89,7 +39,18 @@ const App = () => {
 				login: login,
 				logout: logout,
 			}}>
-			<Outlet />
+			<Layout>
+				<Routes>
+					<Route path="/" element={<App />}>
+						<Route path="users" element={<Users />} />
+						<Route path="login" element={<UserLogin />} />
+						<Route path="signup" element={<UserSignup />} />
+						<Route path="*" element={<UserLogin />} />
+					</Route>
+				</Routes>
+
+				<Outlet />
+			</Layout>
 		</AuthContext.Provider>
 	);
 };
