@@ -1,11 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import './App.css';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Outlet,
-} from 'react-router-dom';
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import { AuthContext } from './shared/context/auth-context';
 import Layout from './shared/components/Layout/Layout';
@@ -41,12 +36,11 @@ const App = () => {
 			}}>
 			<Layout>
 				<Routes>
-					<Route path="/" element={<App />}>
-						<Route path="users" element={<Users />} />
-						<Route path="login" element={<UserLogin />} />
-						<Route path="signup" element={<UserSignup />} />
-						<Route path="*" element={<UserLogin />} />
-					</Route>
+					<Route path="/" element={<Navigate replace to="/users" />} />
+					<Route path="users" element={<Users />} />
+					<Route path="login" element={<UserLogin />} />
+					<Route path="signup" element={<UserSignup />} />
+					<Route path="*" element={<UserLogin />} />
 				</Routes>
 
 				<Outlet />

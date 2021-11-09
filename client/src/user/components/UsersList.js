@@ -55,8 +55,6 @@ const UsersList = (props) => {
 					.catch((err) => {
 						console.log(err);
 					});
-
-				console.log('Logging In');
 			} catch (err) {
 				console.log(err);
 			}
