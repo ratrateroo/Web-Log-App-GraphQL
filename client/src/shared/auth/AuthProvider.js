@@ -8,10 +8,11 @@ const AuthProvider = ({ children }) => {
 	const [token, setToken] = useState(null);
 	const [userId, setUserId] = useState(null);
 
-	const login = useCallback((token, userId, tokenExpiration) => {
+	const login = useCallback((token, userId, tokenExpiration, callback) => {
 		setIsLoggedIn(true);
 		setToken(token);
 		setUserId(userId);
+		callback();
 	}, []);
 
 	const logout = useCallback(() => {
@@ -20,7 +21,7 @@ const AuthProvider = ({ children }) => {
 		setUserId(null);
 	}, []);
 
-	value = {
+	let value = {
 		isLoggedIn: isLoggedIn,
 		token: token,
 		userId: userId,

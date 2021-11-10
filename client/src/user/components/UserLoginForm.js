@@ -8,9 +8,18 @@ import {
 	VALIDATOR_MINLENGTH,
 } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
+
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import { AuthContext } from '../../shared/auth/AuthContext';
+
 const UserLoginForm = () => {
+	let navigate = useNavigate();
+	let location = useLocation();
+
 	const auth = useContext(AuthContext);
+
+	let from = location.state?.from?.pathname || '/';
 
 	const [formState, inputHandler] = useForm(
 		{
@@ -64,7 +73,10 @@ const UserLoginForm = () => {
 					auth.login(
 						resData.data.login.token,
 						resData.data.login.userId,
-						resData.data.login.tokenExpiration
+						resData.data.login.tokenExpiration,
+						() => {
+							navigate(from, { replace: true });
+						}
 					);
 				}
 			})
@@ -72,7 +84,7 @@ const UserLoginForm = () => {
 				console.log(err);
 			});
 
-		console.log('Logging In');
+		//console.log('Logging In');
 		// auth.login();
 	};
 

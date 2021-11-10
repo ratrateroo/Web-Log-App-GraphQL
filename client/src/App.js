@@ -7,6 +7,7 @@ import Layout from './shared/components/Layout/Layout';
 import Users from './user/pages/Users';
 import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
+import RequireAuth from './shared/auth/RequireAuth';
 
 const App = () => {
 	return (
