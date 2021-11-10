@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
-import AuthProvider from './shared/auth/AuthProvider';
 import Layout from './shared/components/Layout/Layout';
 import Users from './user/pages/Users';
 import UserLogin from './user/pages/UserLogin';
@@ -15,9 +14,9 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Navigate replace to="/login" />} />
 				{/* <Route path="users" element={<Users />} /> */}
-				<Route path="login" element={<UserLogin />} />
+				<Route path="/login" element={<UserLogin />} />
 
-				<Route path="signup" element={<UserSignup />} />
+				<Route path="/signup" element={<UserSignup />} />
 
 				<Route
 					path="/users"

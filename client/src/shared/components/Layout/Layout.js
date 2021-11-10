@@ -4,10 +4,12 @@ import AuthProvider from '../../auth/AuthProvider';
 
 const Layout = (props) => {
 	return (
-		<Fragment>
-			<MainNavigation />
-			<AuthProvider>{props.children}</AuthProvider>
-		</Fragment>
+		<AuthProvider>
+			<Fragment>
+				<MainNavigation />
+				{props.children}
+			</Fragment>
+		</AuthProvider>
 	);
 };
 

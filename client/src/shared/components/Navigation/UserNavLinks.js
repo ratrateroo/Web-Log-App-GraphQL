@@ -4,18 +4,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext';
 import './UserNavLinks.css';
 
-const NavLinks = (props) => {
+const UserNavLinks = (props) => {
 	let navigate = useNavigate();
-	let auth = useContext(AuthContext);
 
-	console.log(auth.isLoggedIn);
+	const context = useContext(AuthContext);
 
-	// return (
-	// 	<AuthContext.Consumer>
-	// 		{(context) => {
 	return (
 		<ul className="c-user-navigation__items">
-			{!auth.isLoggedIn && (
+			{!context.isLoggedIn ? (
 				<React.Fragment>
 					<li className="c-user-navigation__item">
 						<NavLink to="/signup" className="c-user-navigation__link">
@@ -28,21 +24,19 @@ const NavLinks = (props) => {
 						</NavLink>
 					</li>
 				</React.Fragment>
-			)}
-			{auth.isLoggedIn && (
+			) : (
 				<li className="c--navigation__item">
 					<button
 						className="c-user-navigation__link"
-						onClick={auth.logout(() => navigate('/'))}>
+						onClick={context.logout(() => {
+							navigate('/');
+						})}>
 						Logout
 					</button>
 				</li>
 			)}
 		</ul>
 	);
-	// 		}}
-	// 	</AuthContext.Consumer>
-	// );
 };
 
-export default NavLinks;
+export default UserNavLinks;

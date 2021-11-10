@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/auth-context';
 import './DefaultNavLinks.css';
 
-const NavLinks = (props) => {
+const DefaultNavLinks = (props) => {
 	const auth = useContext(AuthContext);
 
 	return (
@@ -35,4 +35,4 @@ const NavLinks = (props) => {
 	);
 };
 
-export default NavLinks;
+export default DefaultNavLinks;

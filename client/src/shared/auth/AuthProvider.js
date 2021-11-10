@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
 		setIsLoggedIn(true);
 		setToken(token);
 		setUserId(userId);
+		console.log('Logging In');
 		callback();
 	}, []);
 
@@ -19,8 +20,23 @@ const AuthProvider = ({ children }) => {
 		setIsLoggedIn(false);
 		setToken(null);
 		setUserId(null);
+		console.log('Logging Out');
 		callback();
 	}, []);
+
+	// const login = (token, userId, tokenExpiration, callback) => {
+	// 	setIsLoggedIn(true);
+	// 	setToken(token);
+	// 	setUserId(userId);
+	// 	callback();
+	// };
+
+	// const logout = (callback) => {
+	// 	setIsLoggedIn(false);
+	// 	setToken(null);
+	// 	setUserId(null);
+	// 	callback();
+	// };
 
 	let value = {
 		isLoggedIn: isLoggedIn,
