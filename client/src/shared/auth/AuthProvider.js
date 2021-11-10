@@ -16,10 +16,11 @@ const AuthProvider = ({ children }) => {
 		callback();
 	}, []);
 
-	const logout = useCallback(() => {
+	const logout = useCallback((callback) => {
 		setIsLoggedIn(false);
 		setToken(null);
 		setUserId(null);
+		callback();
 	}, []);
 
 	let value = {

@@ -30,7 +30,11 @@ const UserNavLinks = (props) => {
 				</React.Fragment>
 			) : (
 				<li className="c--navigation__item">
-					<button className="c-user-navigation__link" onClick={logout}>
+					<button
+						className="c-user-navigation__link"
+						onClick={() => {
+							logout(() => navigate('/'));
+						}}>
 						Logout
 					</button>
 				</li>
