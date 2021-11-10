@@ -12,16 +12,14 @@ const AuthProvider = ({ children }) => {
 		setIsLoggedIn(true);
 		setToken(token);
 		setUserId(userId);
-		console.log('Logging In');
+
 		callback();
 	}, []);
 
-	const logout = useCallback((callback) => {
+	const logout = useCallback(() => {
 		setIsLoggedIn(false);
 		setToken(null);
 		setUserId(null);
-		console.log('Logging Out');
-		callback();
 	}, []);
 
 	let value = {

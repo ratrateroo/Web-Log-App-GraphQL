@@ -8,16 +8,10 @@ const UserNavLinks = (props) => {
 	let navigate = useNavigate();
 
 	const { isLoggedIn, logout } = useContext(AuthContext);
-	useEffect(() => {
-		console.log('use effect 1' + isLoggedIn);
-	}, []);
+
 	useEffect(() => {
 		console.log('Is Logged In: ' + isLoggedIn);
 	}, [isLoggedIn]);
-
-	useEffect(() => {
-		console.log('use effect 2' + isLoggedIn);
-	}, []);
 
 	return (
 		<ul className="c-user-navigation__items">
@@ -36,11 +30,7 @@ const UserNavLinks = (props) => {
 				</React.Fragment>
 			) : (
 				<li className="c--navigation__item">
-					<button
-						className="c-user-navigation__link"
-						onClick={logout(() => {
-							navigate('/');
-						})}>
+					<button className="c-user-navigation__link" onClick={logout}>
 						Logout
 					</button>
 				</li>
