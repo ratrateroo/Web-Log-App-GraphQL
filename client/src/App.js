@@ -11,29 +11,27 @@ import RequireAuth from './shared/auth/RequireAuth';
 
 const App = () => {
 	return (
-		<AuthProvider>
-			<Layout>
-				<Routes>
-					<Route path="/" element={<Navigate replace to="/login" />} />
-					{/* <Route path="users" element={<Users />} /> */}
-					<Route path="login" element={<UserLogin />} />
+		<Layout>
+			<Routes>
+				<Route path="/" element={<Navigate replace to="/login" />} />
+				{/* <Route path="users" element={<Users />} /> */}
+				<Route path="login" element={<UserLogin />} />
 
-					<Route path="signup" element={<UserSignup />} />
+				<Route path="signup" element={<UserSignup />} />
 
-					<Route
-						path="/users"
-						element={
-							<RequireAuth>
-								<Users />
-							</RequireAuth>
-						}
-					/>
-					<Route path="*" element={<UserLogin />} />
-				</Routes>
+				<Route
+					path="/users"
+					element={
+						<RequireAuth>
+							<Users />
+						</RequireAuth>
+					}
+				/>
+				<Route path="*" element={<UserLogin />} />
+			</Routes>
 
-				<Outlet />
-			</Layout>
-		</AuthProvider>
+			<Outlet />
+		</Layout>
 	);
 };
 
