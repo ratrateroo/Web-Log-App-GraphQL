@@ -78,8 +78,6 @@ const UserLoginForm = () => {
 							navigate(from, { replace: true });
 						}
 					);
-
-					console.log(auth.isLoggedIn);
 				}
 			})
 			.catch((err) => {
