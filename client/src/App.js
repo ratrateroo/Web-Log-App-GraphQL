@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './shared/components/Layout/Layout';
 import Users from './user/pages/Users';

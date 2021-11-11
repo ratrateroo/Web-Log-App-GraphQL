@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { graphqlUploadExpress } = require('graphql-upload');
 const mongoose = require('mongoose');
@@ -38,7 +39,7 @@ const startServer = async () => {
 		await createDirectory('images');
 		//serve public folder for path starting with /freefiles
 		app.use('/freefiles', express.static('public'));
-		const port = 8000;
+		const port = process.env.PORT || 4000;
 		app.listen({ port: port }, () => {
 			console.log(
 				`🚀  Server ready at http://localhost:${port}/${apolloserver.graphqlPath}`
