@@ -90,7 +90,6 @@ const userResolvers = {
 	},
 
 	login: async ({ username, password }) => {
-		console.log(username, password);
 		const user = await User.findOne({ username: username });
 		if (!user) {
 			throw new Error('User does not exist!');
@@ -100,6 +99,7 @@ const userResolvers = {
 		if (!isEqual) {
 			throw new Error('Password is incorrect!');
 		}
+		console.log('User: ' + username + ' logged in.');
 
 		const token = jwt.sign(
 			{ userId: user.id, email: user.email },
