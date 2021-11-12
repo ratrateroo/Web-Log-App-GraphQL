@@ -17,6 +17,14 @@ const userResolvers = {
 		}
 	},
 
+	check: async () => {
+		try {
+			return { message: 'Hello there...' };
+		} catch (err) {
+			throw err;
+		}
+	},
+
 	users: async () => {
 		try {
 			const users = await User.find();
