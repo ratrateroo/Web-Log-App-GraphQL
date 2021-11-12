@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+	scalar Upload
+
 	type Check {
 		message: String!
 	}
@@ -43,6 +45,12 @@ const typeDefs = gql`
 		updatedAt: String!
 	}
 
+	type File {
+		filename: String!
+		mimetype: String!
+		encoding: String!
+	}
+
 	input UserInput {
 		username: String!
 		email: String!
@@ -73,6 +81,7 @@ const typeDefs = gql`
 		addFriend(friendId: ID!): Friend!
 		removeFriend(friendId: ID!): Friend!
 		updateImage(userId: ID!, profileimage: String!): User
+		uploadProfileImage(file: Upload!): File
 	}
 
 	schema {
