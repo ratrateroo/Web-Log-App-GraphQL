@@ -66,7 +66,8 @@ const UserProfile = (props) => {
 			friends: 0,
 		},
 	];
-	const userId = useParams().uid;
+	const params = useParams();
+	const { userId } = params;
 	const auth = useContext(AuthContext);
 	const [loadedUser, setLoadedUser] = useState({});
 	const [userCreatedBlogs, setUserCreatedBlogs] = useState();
@@ -119,6 +120,7 @@ const UserProfile = (props) => {
 						return res.json();
 					})
 					.then((resData) => {
+						console.log(resData);
 						console.log(resData.data);
 						console.log(resData.data.user);
 						//console.log(resData.data.user.createdBlogs.length);

@@ -8,6 +8,7 @@ import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
 import RequireAuth from './shared/auth/RequireAuth';
 import Blogs from './blog/pages/Blogs';
+import UserProfile from './user/pages/UserProfile';
 
 const App = () => {
 	useEffect(() => {
@@ -64,6 +65,7 @@ const App = () => {
 
 					<Route path="/signup" element={<UserSignup />} />
 					<Route path="/blogs" element={<Blogs />} />
+					<Route path="/profile/:uid" element={<UserProfile />} />
 
 					<Route
 						path="/users"

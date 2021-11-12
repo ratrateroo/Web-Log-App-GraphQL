@@ -3,7 +3,9 @@ const userResolvers = require('./user');
 const resolvers = {
 	Query: {
 		check: userResolvers.check,
-		user: userResolvers.user,
+		user: (_, data) => {
+			return userResolvers.user(data);
+		},
 		users: userResolvers.users,
 		login: (_, data) => {
 			return userResolvers.login(data);
