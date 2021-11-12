@@ -15,6 +15,7 @@ const resolvers = {
 		createUser: (_, data) => {
 			return userResolvers.createUser(data);
 		},
+		uploadProfileImage: (_, { file }) => userResolvers.storeUpload(file),
 	},
 };
 
