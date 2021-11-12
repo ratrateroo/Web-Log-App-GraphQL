@@ -11,7 +11,7 @@ const userResolvers = {
 	user: async ({ id }) => {
 		try {
 			const user = await User.findById(id);
-			console.log(user._doc);
+			//console.log(user._doc);
 
 			return transformUser(user);
 		} catch (err) {
@@ -124,10 +124,11 @@ const userResolvers = {
 	storeUpload: async (file) => {
 		const { createReadStream, filename, mimetype, encoding } =
 			await file.file;
-		console.log(createReadStream);
-		console.log(filename);
-		console.log(mimetype);
-		console.log(encoding);
+		console.log(file.file);
+		// console.log(createReadStream);
+		// console.log(filename);
+		// console.log(mimetype);
+		// console.log(encoding);
 		//check for the correct mimetype
 		if (
 			mimetype !== 'image/jpeg' &&

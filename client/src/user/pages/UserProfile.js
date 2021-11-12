@@ -67,13 +67,13 @@ const UserProfile = (props) => {
 		},
 	];
 	const params = useParams();
-	const { userId } = params;
+	const { uid } = params;
 	const auth = useContext(AuthContext);
 	const [loadedUser, setLoadedUser] = useState({});
 	const [userCreatedBlogs, setUserCreatedBlogs] = useState();
 
 	useEffect(() => {
-		console.log(userId);
+		console.log(uid);
 
 		const fetchUser = async () => {
 			try {
@@ -100,7 +100,7 @@ const UserProfile = (props) => {
 					}
 				`,
 					variables: {
-						id: userId,
+						id: uid,
 					},
 				};
 
@@ -137,7 +137,7 @@ const UserProfile = (props) => {
 			}
 		};
 		fetchUser();
-	}, [auth.token, userId]);
+	}, [auth.token, uid]);
 
 	//const loadedUser = USERS.filter((user) => user._id === userId);
 	// const loadedUser = USERS.find(user => user.id === userId);
