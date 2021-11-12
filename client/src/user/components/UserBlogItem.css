@@ -1,0 +1,68 @@
+.c-blogs-table__row {
+	display: flex;
+	justify-content: space-around;
+	background-color: var(--Sheldon-Blue);
+
+	margin: 0.2rem 0;
+	height: 2rem;
+}
+
+.c-blogs-table__row:hover {
+	background-color: var(--Cadet-Blue);
+}
+
+.c-blog-row__cell {
+	width: 20%;
+	text-align: center;
+	color: var(--Charlston-Green);
+	line-height: 2rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 0.8rem;
+}
+
+.c-action-button {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.c-action-button__edit {
+	background-color: var(--English-Green);
+	color: white;
+	border-radius: 0.5rem;
+	width: 45%;
+	line-height: 1.5rem;
+}
+
+.c-action-button__delete {
+	background-color: var(--Red-Wine);
+	color: white;
+	border-radius: 0.5rem;
+	width: 45%;
+	line-height: 1.5rem;
+}
+
+.c-blogs-list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+
+	height: 100%;
+}
+
+.c-form-button {
+	margin: 1rem;
+	width: 100%;
+}
+.c-form-button__createnew {
+	width: 100%;
+	background-color: var(--Deep-Space-Sparcle);
+	border: none;
+	color: white;
+	height: 2rem;
+}

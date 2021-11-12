@@ -1,0 +1,20 @@
+.c-blogs-table {
+	display: table;
+	width: 100%;
+}
+
+.c-blogs-table__header {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	height: 2rem;
+	background-color: var(--Cadet-Blue);
+	padding: 0.3rem 0;
+}
+
+.c-blog-header__cell {
+	color: whitesmoke;
+	width: 20%;
+	text-align: center;
+	font-size: 0.9rem;
+}

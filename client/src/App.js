@@ -7,7 +7,7 @@ import Users from './user/pages/Users';
 import UserLogin from './user/pages/UserLogin';
 import UserSignup from './user/pages/UserSignup';
 import RequireAuth from './shared/auth/RequireAuth';
-import SampleBlog from './user/pages/SampleBlog';
+import UserBlogs from './user/pages/UserBlogs';
 
 const App = () => {
 	return (
@@ -19,7 +19,7 @@ const App = () => {
 					<Route path="/login" element={<UserLogin />} />
 
 					<Route path="/signup" element={<UserSignup />} />
-					<Route path="/blogs" element={<SampleBlog />} />
+					<Route path="/blogs" element={<UserBlogs />} />
 
 					<Route
 						path="/users"
