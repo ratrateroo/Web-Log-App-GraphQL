@@ -1,0 +1,13 @@
+.o-blog-list {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 1rem 0 0 0;
+}
+
+.o-blog-list::after {
+	height: 0;
+	width: 15rem;
+	content: '';
+}
