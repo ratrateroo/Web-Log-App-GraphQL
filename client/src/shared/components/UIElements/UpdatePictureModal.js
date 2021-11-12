@@ -1,14 +1,22 @@
 import React, { useState, useContext } from 'react';
+import { gql, useApolloClient, useMutation } from '@apollo/client';
 
 import Button from '../FormElements/Button';
-
 import ImageUpload from '../FormElements/ImageUpload';
-
 import { useForm } from '../../hooks/form-hook';
-
 import { AuthContext } from '../../context/auth-context';
 
 import './UpdatePictureModal.css';
+
+const SINGLE_UPLOAD_MUTATION = gql`
+	mutation uploadProfileImage($file: Upload!) {
+		uploadProfileImage(file: $file) {
+			filename
+			mimetype
+			encoding
+		}
+	}
+`;
 
 const UpdatePictureModal = (props) => {
 	const [currentimage, setCurrentImage] = useState(props.profileimage);
@@ -25,9 +33,11 @@ const UpdatePictureModal = (props) => {
 		false
 	);
 
-	const changeCurrentImageHandler = (image) => {
-		setCurrentImage(image);
-	};
+	// const changeCurrentImageHandler = (image) => {
+	// 	setCurrentImage(image);
+	// };
+
+	const onChangeCurrentImageHandler = () => {};
 
 	const updateProfileImageHandler = (event) => {
 		console.log('Update Profile Image');
@@ -110,7 +120,7 @@ const UpdatePictureModal = (props) => {
 					<ImageUpload
 						id="image"
 						onInput={inputHandler}
-						onUpload={changeCurrentImageHandler}
+						onUpload={onChangeCurrentImageHandler}
 						currentimage={props.profileimage}
 						errorText={!currentimage ? 'Please provide an image.' : null}
 					/>
