@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './UserProfileInfo.css';
 
@@ -6,10 +6,11 @@ import Button from '../../shared/components/FormElements/Button';
 
 import UpdatePictureModal from '../../shared/components/UIElements/UpdatePictureModal';
 import UpdateProfileModal from '../../shared/components/UIElements/UpdateProfileModal';
-
+import { AuthContext } from '../../shared/auth/AuthContext';
 const UserProfileInfo = (props) => {
 	const [updating, setUpdating] = useState(false);
 	const [changeImage, setChangeImage] = useState(false);
+	const auth = useContext(AuthContext);
 	// const [createdBlogsCount, setCreatedBlogsCount] = useState();
 
 	// useEffect(() => {
@@ -58,7 +59,9 @@ const UserProfileInfo = (props) => {
 					alt={props.username}
 				/>
 			</div>
-			<Button onClick={startChangeImageHandler}>Change Image</Button>
+			{auth.userId === props.userId && (
+				<Button onClick={startChangeImageHandler}>Change Image</Button>
+			)}
 
 			<div className="c-user-profile__info">
 				<h2 className="c-user-profile__info__fullname">
@@ -72,7 +75,9 @@ const UserProfileInfo = (props) => {
 						Friends: {props.friends}
 					</li>
 				</ul>
-				<Button onClick={startCreateEventHandler}>Update Profile</Button>
+				{auth.userId === props.userId && (
+					<Button onClick={startCreateEventHandler}>Update Profile</Button>
+				)}
 			</div>
 		</div>
 	);
