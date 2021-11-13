@@ -67,7 +67,7 @@ const typeDefs = gql`
 
 	type Query {
 		check: Check!
-
+		profileImage(id: ID!): User!
 		user(id: ID!): User!
 		users: [User!]!
 		blogs: [Blog!]!
@@ -80,7 +80,7 @@ const typeDefs = gql`
 		createBlog(blogInput: BlogInput): Blog
 		addFriend(friendId: ID!): Friend!
 		removeFriend(friendId: ID!): Friend!
-		updateImage(userId: ID!, profileimage: String!): User
+		updateImage(userId: ID!, profileImage: String!): User
 		uploadProfileImage(file: Upload!): File
 	}
 
