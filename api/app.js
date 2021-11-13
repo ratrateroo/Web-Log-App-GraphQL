@@ -7,6 +7,7 @@ const apolloserver = require('./apollo/apolloserver');
 const createDirectory = require('./util/createDirectory');
 const fileNameReader = require('./util/fileNameReader');
 const isAuth = require('./middleware/is-auth');
+const logReqRes = require('./util/logReqRes');
 
 const url = `mongodb://127.0.0.1:27017/${process.env.MONGO_DB}`;
 
@@ -31,6 +32,13 @@ const startServer = async () => {
 		await apolloserver.start();
 
 		const app = express();
+		app.use((req, res, next) => {
+			console.log(req);
+			next();
+		});
+
+		app.use(logReqRes);
+
 		//add middleware to the app
 		app.use(graphqlUploadExpress());
 		app.use(isAuth);
