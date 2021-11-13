@@ -6,7 +6,7 @@ const link = createUploadLink({
 	uri: 'http://localhost:8000/graphql',
 });
 
-console.log(link);
+// console.log(link);
 
 const client = new ApolloClient({
 	link: link,

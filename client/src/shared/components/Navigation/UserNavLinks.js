@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../auth/AuthContext';
@@ -8,10 +8,6 @@ const UserNavLinks = (props) => {
 	let navigate = useNavigate();
 
 	const { isLoggedIn, logout } = useContext(AuthContext);
-
-	useEffect(() => {
-		console.log('Is Logged In: ' + isLoggedIn);
-	}, [isLoggedIn]);
 
 	return (
 		<ul className="c-user-navigation__items">

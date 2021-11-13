@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { gql, useApolloClient, useMutation } from '@apollo/client';
 
 import Button from '../FormElements/Button';
@@ -19,15 +19,21 @@ const SINGLE_UPLOAD_MUTATION = gql`
 `;
 
 const UpdatePictureModal = (props) => {
-	const [currentimage, setCurrentImage] = useState(props.profileimage);
-
+	const [currentimage, setCurrentImage] = useState();
 	const auth = useContext(AuthContext);
+
+	useEffect(() => {
+		// console.log(
+		// 	'Current image: ' + props.profileimage + ' changed to: ' + currentimage
+		// );
+		console.log(formState.isValid);
+	}, [currentimage]);
 
 	const [formState, inputHandler] = useForm(
 		{
-			profileimage: {
-				value: '',
-				isValid: true,
+			image: {
+				value: {},
+				isValid: null,
 			},
 		},
 		false
@@ -40,13 +46,15 @@ const UpdatePictureModal = (props) => {
 	// 	setCurrentImage(image);
 	// };
 
-	const onChangeCurrentImageHandler = () => {
-		formState.inputs.profileimage.isValid &&
-			uploadProfileImageMutation({
-				variables: { file: formState.inputs.profileimage.value },
-			}).then(() => {
-				apolloClient.resetStore();
-			});
+	const onChangeCurrentImageHandler = (image) => {
+		// formState.inputs.profileimage.isValid &&
+		// 	uploadProfileImageMutation({
+		// 		variables: { file: formState.inputs.profileimage.value },
+		// 	}).then(() => {
+		// 		apolloClient.resetStore();
+		// 	});
+
+		setCurrentImage(image);
 	};
 
 	const updateProfileImageHandler = (event) => {
@@ -131,7 +139,7 @@ const UpdatePictureModal = (props) => {
 						id="image"
 						onInput={inputHandler}
 						onUpload={onChangeCurrentImageHandler}
-						currentimage={props.profileimage}
+						//currentimage={props.profileimage}
 						errorText={!currentimage ? 'Please provide an image.' : null}
 					/>
 				</div>
@@ -148,7 +156,7 @@ const UpdatePictureModal = (props) => {
 						<div className="c-form-button">
 							<Button
 								submit
-								disabled={!currentimage}
+								disabled={!formState.isValid}
 								onClick={updateProfileImageHandler}>
 								Ok
 							</Button>

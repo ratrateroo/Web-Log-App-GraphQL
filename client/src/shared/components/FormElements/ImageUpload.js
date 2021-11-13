@@ -18,6 +18,7 @@ const ImageUpload = (props) => {
 		fileReader.onload = () => {
 			setPreviewUrl(fileReader.result);
 			props.onUpload(fileReader.result);
+			console.log(file.name);
 		};
 		fileReader.readAsDataURL(file);
 	}, [file]);
@@ -67,7 +68,7 @@ const ImageUpload = (props) => {
 				ref={filePickerRef}
 				// style={}
 				type="file"
-				accept=".jpg,.png,.jpeg"
+				accept=".jpg,.png,.jpeg" //file select dialog box, filter file types
 				onChange={pickedHandler}
 			/>
 			<div className="c-form-upload-button">
