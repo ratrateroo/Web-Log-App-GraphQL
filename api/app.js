@@ -36,11 +36,7 @@ const startServer = async () => {
 
 		//app.use(express.urlencoded());
 		app.use(express.json());
-
-		app.use((req, res, next) => {
-			console.log('Body ' + req.body);
-			next();
-		});
+		app.use(isAuth);
 
 		app.use('/graphql', (req, res, next) => {
 			console.log(req.body.query);
@@ -53,7 +49,10 @@ const startServer = async () => {
 
 		//add middleware to the app
 		app.use(graphqlUploadExpress());
-		app.use(isAuth);
+		app.use((req, res, next) => {
+			console.log('Body ' + res.locals.userId);
+			return next();
+		});
 		apolloserver.applyMiddleware({ app });
 		//Create images forlder
 		await createDirectory('images');

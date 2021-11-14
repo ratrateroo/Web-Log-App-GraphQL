@@ -119,6 +119,8 @@ const userResolvers = {
 			}
 		);
 
+		console.log(req);
+
 		return { userId: user.id, token: token, tokenExpiration: 1 };
 	},
 	storeUpload: async (file) => {
