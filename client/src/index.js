@@ -6,18 +6,16 @@ import { ApolloProvider } from '@apollo/client';
 import './index.css';
 import App from './App';
 import client from './apollo/ApolloClient';
-import AuthProvider from './shared/auth/AuthProvider';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AuthProvider>
-			<ApolloProvider client={client}>
-				<Router>
-					<App />
-				</Router>
-			</ApolloProvider>
-		</AuthProvider>
+		<ApolloProvider client={client}>
+			<Router>
+				<App />
+			</Router>
+		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

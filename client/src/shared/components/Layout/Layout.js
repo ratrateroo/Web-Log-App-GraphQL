@@ -5,10 +5,12 @@ import { Outlet } from 'react-router';
 
 const Layout = (props) => {
 	return (
-		<Fragment>
-			<MainNavigation />
-			<Outlet />
-		</Fragment>
+		<AuthProvider>
+			<Fragment>
+				<MainNavigation />
+				<Outlet />
+			</Fragment>
+		</AuthProvider>
 	);
 };
 
