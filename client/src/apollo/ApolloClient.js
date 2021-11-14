@@ -1,5 +1,3 @@
-import React, { useContext } from 'react';
-
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 import { createUploadLink } from 'apollo-upload-client';
@@ -8,7 +6,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import { AuthContext } from '../shared/auth/AuthContext';
 
-const auth = useContext(AuthContext);
+import forAuthToken from './forAuthToken';
 
 const httpLink = createUploadLink({
 	uri: 'http://localhost:8000/graphql',
@@ -21,7 +19,7 @@ const authLink = setContext((_, { headers }) => {
 	return {
 		headers: {
 			...headers,
-			authorization: token ? `Bearer ${auth.token}` : '',
+			authorization: token ? `Bearer ${forAuthToken}` : '',
 		},
 	};
 });
