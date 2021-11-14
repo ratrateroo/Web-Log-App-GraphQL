@@ -1,15 +1,33 @@
+import React, { useContext } from 'react';
+
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 import { createUploadLink } from 'apollo-upload-client';
 
-const link = createUploadLink({
+import { setContext } from '@apollo/client/link/context';
+
+import { AuthContext } from '../shared/auth/AuthContext';
+
+const auth = useContext(AuthContext);
+
+const httpLink = createUploadLink({
 	uri: 'http://localhost:8000/graphql',
 });
 
-// console.log(link);
+const authLink = setContext((_, { headers }) => {
+	// get the authentication token from local storage if it exists
+	//const token = localStorage.getItem('token');
+	// return the headers to the context so httpLink can read them
+	return {
+		headers: {
+			...headers,
+			authorization: token ? `Bearer ${auth.token}` : '',
+		},
+	};
+});
 
 const client = new ApolloClient({
-	link: link,
+	link: authLink.concat(httpLink),
 	cache: new InMemoryCache(),
 });
 
