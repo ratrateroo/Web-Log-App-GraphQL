@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const { graphqlUploadExpress } = require('graphql-upload');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const apolloserver = require('./apollo/apolloserver');
 const createDirectory = require('./util/createDirectory');
@@ -32,12 +33,23 @@ const startServer = async () => {
 		await apolloserver.start();
 
 		const app = express();
+
+		//app.use(express.urlencoded());
+		app.use(express.json());
+
 		app.use((req, res, next) => {
-			console.log(req);
+			console.log('Body ' + req.body);
 			next();
 		});
 
-		app.use(logReqRes);
+		app.use('/graphql', (req, res, next) => {
+			console.log(req.body.query);
+			console.log(req.body.variables);
+			console.log(res.data);
+			return next();
+		});
+
+		//app.use(logReqRes);
 
 		//add middleware to the app
 		app.use(graphqlUploadExpress());
