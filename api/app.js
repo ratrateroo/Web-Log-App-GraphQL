@@ -39,9 +39,9 @@ const startServer = async () => {
 		app.use(isAuth);
 
 		app.use('/graphql', (req, res, next) => {
-			console.log(req.body.query);
-			console.log(req.body.variables);
-			console.log(res.data);
+			// console.log(req.body.query);
+			// console.log(req.body.variables);
+			// console.log(res.data);
 			return next();
 		});
 

@@ -119,7 +119,7 @@ const userResolvers = {
 			}
 		);
 
-		console.log(req);
+		//console.log(req);
 
 		return { userId: user.id, token: token, tokenExpiration: 1 };
 	},
