@@ -62,54 +62,59 @@ const UpdatePictureModal = (props) => {
 
 		event.preventDefault();
 
-		const formData = new FormData();
+		uploadProfileImageMutation({
+			variables: { file: formState.inputs.image.value },
+		});
+		console.log(formState);
 
-		const requestBody = {
-			query: `
-			mutation {
-				updateImage(
-					userId: "${props.userId}",
-					profileimage: "${currentimage}",
+		// const formData = new FormData();
 
-				) {
-					username
-					profileimage
-					email
-				}
-			}
-			`,
-		};
+		// const requestBody = {
+		// 	query: `
+		// 	mutation {
+		// 		updateImage(
+		// 			userId: "${props.userId}",
+		// 			profileimage: "${currentimage}",
 
-		formData.append('image', currentimage);
-		console.log(currentimage);
+		// 		) {
+		// 			username
+		// 			profileimage
+		// 			email
+		// 		}
+		// 	}
+		// 	`,
+		// };
 
-		const options = {
-			method: 'POST',
-			//headers: {
-			//'Content-Type': 'application/json',
-			//Authorization: 'Bearer ' + auth.token,
-			//'Access-Control-Allow-Origin': 'http://localhost:3000',
-			//'Access-Control-Allow-Credentials': 'true',
-			//},
-			body: formData,
-		};
+		// formData.append('image', currentimage);
+		// console.log(currentimage);
 
-		delete options.headers['Content-Type'];
+		// const options = {
+		// 	method: 'POST',
+		// 	//headers: {
+		// 	//'Content-Type': 'application/json',
+		// 	//Authorization: 'Bearer ' + auth.token,
+		// 	//'Access-Control-Allow-Origin': 'http://localhost:3000',
+		// 	//'Access-Control-Allow-Credentials': 'true',
+		// 	//},
+		// 	body: formData,
+		// };
 
-		fetch('http://localhost:8000/graphql', options)
-			.then((res) => {
-				if (res.status !== 200 && res.status !== 201) {
-					throw new Error('Failed!');
-				}
-				return res.json();
-			})
-			.then((resData) => {
-				console.log(resData);
-				console.log('Image updated.');
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		// delete options.headers['Content-Type'];
+
+		// fetch('http://localhost:8000/graphql', options)
+		// 	.then((res) => {
+		// 		if (res.status !== 200 && res.status !== 201) {
+		// 			throw new Error('Failed!');
+		// 		}
+		// 		return res.json();
+		// 	})
+		// 	.then((resData) => {
+		// 		console.log(resData);
+		// 		console.log('Image updated.');
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
 	};
 
 	return (
