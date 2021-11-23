@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { gql, useApolloClient, useMutation } from '@apollo/client';
+import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
 
 import Button from '../FormElements/Button';
 import ImageUpload from '../FormElements/ImageUpload';
@@ -7,6 +7,12 @@ import { useForm } from '../../hooks/form-hook';
 import { AuthContext } from '../../context/auth-context';
 
 import './UpdatePictureModal.css';
+
+export const imageQuery = gql`
+	{
+		image
+	}
+`;
 
 const SINGLE_UPLOAD_MUTATION = gql`
 	mutation uploadProfileImage($file: Upload!) {
