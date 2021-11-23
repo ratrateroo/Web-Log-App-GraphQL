@@ -8,9 +8,18 @@ import { AuthContext } from '../../context/auth-context';
 
 import './UpdatePictureModal.css';
 
-export const imageQuery = gql`
+export const profileImageQuery = gql`
 	{
-		image
+		profileImage(id: $id) {
+			_id
+			username
+			email
+			password
+			firstname
+			middlename
+			lastname
+			profileimage
+		}
 	}
 `;
 
@@ -25,9 +34,12 @@ const SINGLE_UPLOAD_MUTATION = gql`
 `;
 
 const UpdatePictureModal = (props) => {
+	const { data, loading } = useQuery(profileImageQuery, {
+		variables: { id: props.userId },
+	});
 	const [currentimage, setCurrentImage] = useState();
 	const auth = useContext(AuthContext);
-
+	console.log(data);
 	useEffect(() => {
 		// console.log(
 		// 	'Current image: ' + props.profileimage + ' changed to: ' + currentimage

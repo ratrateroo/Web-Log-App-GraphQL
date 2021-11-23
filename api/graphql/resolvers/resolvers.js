@@ -7,6 +7,7 @@ const resolvers = {
 			return userResolvers.user(data);
 		},
 		users: userResolvers.users,
+		profileImage: userResolvers.profileImage,
 		login: (_, data) => {
 			return userResolvers.login(data);
 		},

@@ -150,6 +150,16 @@ const userResolvers = {
 			encoding: encoding,
 		});
 	},
+	profileImage: async ({ id }) => {
+		try {
+			const user = await User.findById(id);
+			//console.log(user._doc);
+
+			return transformUser(user);
+		} catch (err) {
+			throw err;
+		}
+	},
 };
 
 module.exports = userResolvers;
