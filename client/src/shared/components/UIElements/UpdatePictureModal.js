@@ -145,6 +145,8 @@ const UpdatePictureModal = (props) => {
 
 		uploadProfileImageMutation({
 			variables: { file: formState.inputs.image.value },
+		}).then(() => {
+			apolloClient.resetStore();
 		});
 		console.log(formState);
 
