@@ -70,6 +70,10 @@ const UserLoginForm = () => {
 			})
 			.then((resData) => {
 				if (resData.data.login.token) {
+					localStorage.setItem(
+						'token',
+						JSON.stringify(resData.data.login.token)
+					);
 					auth.login(
 						resData.data.login.token,
 						resData.data.login.userId,
