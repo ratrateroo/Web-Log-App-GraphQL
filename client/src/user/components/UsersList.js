@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import { AuthContext } from '../../shared/context/auth-context';
+import { AuthContext } from '../../shared/auth/AuthContext';
 import UserItem from './UserItem';
 import './UsersList.css';
 import dummy_image from '../../Images/user_dummy.png';

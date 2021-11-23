@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import MainBody from '../../shared/components/UIElements/MainBody';
 import UserProfileInfo from '../components/UserProfileInfo';
 
-import { AuthContext } from '../../shared/context/auth-context';
+import { AuthContext } from '../../shared/auth/AuthContext';
 
 import dummy_image from '../../Images/user_dummy.png';
 

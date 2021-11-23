@@ -8,7 +8,8 @@ import {
 	VALIDATOR_MINLENGTH,
 } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
+
+import { AuthContext } from '../../shared/auth/AuthContext';
 
 const UserSignupForm = (props) => {
 	const auth = useContext(AuthContext);

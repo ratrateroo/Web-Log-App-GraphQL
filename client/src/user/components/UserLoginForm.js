@@ -74,6 +74,7 @@ const UserLoginForm = () => {
 						'token',
 						JSON.stringify(resData.data.login.token)
 					);
+					console.log(resData.data.login.token);
 					auth.login(
 						resData.data.login.token,
 						resData.data.login.userId,
