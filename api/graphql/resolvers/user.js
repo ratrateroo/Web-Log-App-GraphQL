@@ -155,6 +155,8 @@ const userResolvers = {
 			const user = await User.findById(id);
 			//console.log(user._doc);
 
+			console.log(user);
+
 			return transformUser(user);
 		} catch (err) {
 			throw err;

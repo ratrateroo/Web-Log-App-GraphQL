@@ -37,9 +37,72 @@ const UpdatePictureModal = (props) => {
 	const { data, loading } = useQuery(profileImageQuery, {
 		variables: { id: props.userId },
 	});
+	console.log(data);
 	const [currentimage, setCurrentImage] = useState();
 	const auth = useContext(AuthContext);
-	console.log(data);
+
+	// useEffect(() => {
+	// 	const fetchUser = async () => {
+	// 		try {
+	// 			const requestBody = {
+	// 				query: `
+	// 				query User($id: ID!) {
+	// 				profileImage(id: $id) {
+	// 					_id
+	// 					username
+	// 					email
+	// 					password
+	// 					firstname
+	// 					middlename
+	// 					lastname
+	// 					profileimage
+	// 					createdBlogs {
+	// 						_id
+
+	// 					}
+
+	// 				}
+	// 				}
+	// 			`,
+	// 				variables: {
+	// 					id: props.userId,
+	// 				},
+	// 			};
+
+	// 			fetch('http://localhost:8000/graphql', {
+	// 				method: 'POST',
+	// 				headers: {
+	// 					'Content-Type': 'application/json',
+	// 					Authorization: 'Bearer ' + auth.token,
+	// 				},
+	// 				body: JSON.stringify(requestBody),
+	// 			})
+	// 				.then((res) => {
+	// 					if (res.status !== 200 && res.status !== 201) {
+	// 						throw new Error('Failed!');
+	// 					}
+
+	// 					return res.json();
+	// 				})
+	// 				.then((resData) => {
+	// 					console.log(resData);
+	// 					console.log(resData.data);
+	// 					console.log(resData.data.user);
+	// 					//console.log(resData.data.user.createdBlogs.length);
+
+	// 					//setUserCreatedBlogs(resData.data.user.createdBlogs.length);
+	// 				})
+	// 				.catch((err) => {
+	// 					console.log(err);
+	// 				});
+
+	// 			console.log('Getting Profile Image');
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	};
+	// 	fetchUser();
+	// }, []);
 	useEffect(() => {
 		// console.log(
 		// 	'Current image: ' + props.profileimage + ' changed to: ' + currentimage
