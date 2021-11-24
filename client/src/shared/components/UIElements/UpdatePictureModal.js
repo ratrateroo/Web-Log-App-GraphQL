@@ -123,17 +123,10 @@ const UpdatePictureModal = (props) => {
 	const [uploadProfileImageMutation] = useMutation(SINGLE_UPLOAD_MUTATION);
 	const apolloClient = useApolloClient();
 
-	// const changeCurrentImageHandler = (image) => {
-	// 	setCurrentImage(image);
-	// };
+	
 
 	const onChangeCurrentImageHandler = (image) => {
-		// formState.inputs.profileimage.isValid &&
-		// 	uploadProfileImageMutation({
-		// 		variables: { file: formState.inputs.profileimage.value },
-		// 	}).then(() => {
-		// 		apolloClient.resetStore();
-		// 	});
+		
 
 		setCurrentImage(image);
 	};
